@@ -1,0 +1,71 @@
+public class DFS {
+	/**
+	 * Task: tracks the number of nodes being traversed and stores the tree's
+	 * height.
+	 */
+    private int nodeCount = 0;
+    private int treeHeight = 0;
+
+    /**
+     * Task: Creates DFS.
+     */
+    public DFS() {
+        System.out.println("Call DFS with root node to do a Depth First Search.");
+    }
+
+    /**
+     * Task: starts the DFS and sets tree height. 
+     * @param node
+     * @return  tree height
+     */
+    // Method to start the DFS and return the tree height as 0 if no nodes exist.
+    public int DFS(Node node) {
+        if (node == null) {
+            return 0;  
+        }//end DFS
+
+        /**
+         * Task: Visits a node and increments the count.
+         */
+        System.out.println("Visitng node value: " +node.getData());
+        nodeCount++;  
+
+        /**
+         * Task: uses recursion to traverse the children of both
+         * the left and the right. 
+         */
+        int leftHeight = DFS(node.getlChild());
+        int rightHeight = DFS(node.getrChild());
+
+        /**
+         * Task: measures the  length of the tree by 
+         * seeing what the largest node from the root.
+         */
+        int currentHeight = 1 + Math.max(leftHeight, rightHeight);
+
+        
+         /**
+          * Task: measures the tree's maximum height and sets
+          * currenHeight as treeHeight. 
+          */
+        treeHeight = Math.max(treeHeight, currentHeight);
+
+        return currentHeight;
+    }//end DFS
+
+    /**
+     * Task: Counts the number of traversed nodes. 
+     * @return nodeCount
+     */
+    public int getNodeCount() {
+        return nodeCount;
+    }//end getNodeCount
+
+    /**
+     * Task: gets the tree's height.
+     * @return treeHeight
+     */
+    public int getTreeHeight() {
+        return treeHeight;
+    }//end getTreeHeight
+}//end class
